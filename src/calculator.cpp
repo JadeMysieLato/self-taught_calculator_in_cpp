@@ -1,29 +1,106 @@
 #include <iostream>
 using namespace std;
 
+float calculator(char operation);
+
 int main()
 {
-  string input_number;
-  int sum = 0;
+  float result = 0;
+  char operation;
 
-  cout << "(Press enter to get the result)\n";
-  while (input_number != "=")
+  do
   {
-    cout << "Enter your Number: ";
-    cin >> input_number;
-    if (input_number == "=")
+    cout << "[+] Add Numbers\n";
+    cout << "[-] Subtract Numbers\n";
+    cout << "[*] Multiply Numbers\n";
+    cout << "[/] Divide Numbers\n";
+    cout << "[x] Exit\n";
+    cout << "What are you going to do?: ";
+    cin >> operation;
+
+    switch (tolower(operation))
     {
-      cout << sum;
+    case 'x':
+      cout << "\nThank you for using Mysie's Caluclator!";
       break;
+    case '+':
+    case '-':
+    case '*':
+    case '/':
+      result = calculator(operation);
+      cout << "\nResult: " << result << "\n\n";
+      break;
+    default:
+      cout << "Input a valid operator!";
     }
-    try
+  } while (operation != 'x');
+
+  return 0;
+}
+
+float calculator(char operation)
+{
+  string number_input;
+  float result = 0;
+
+  cout << "[=] Is equal to\n";
+  while (number_input != "=")
+  {
+    cin >> number_input;
+    if (number_input == "=")
     {
-      int inp = stoi(input_number);
-      sum += inp;
+      return result;
     }
-    catch (...)
+
+    switch (operation)
     {
-      cout << "Enter a number!\n";
+    case '+':
+      try
+      {
+        float number = stoi(number_input);
+        result += number;
+      }
+      catch (...)
+      {
+        cout << "Invalid number!\n";
+      }
+      break;
+
+    case '-':
+      try
+      {
+        float number = stoi(number_input);
+        result -= number;
+      }
+      catch (...)
+      {
+        cout << "Invalid number!\n";
+      }
+      break;
+
+    case '*':
+      try
+      {
+        float number = stoi(number_input);
+        result *= number;
+      }
+      catch (...)
+      {
+        cout << "Invalid number!\n";
+      }
+      break;
+
+    case '/':
+      try
+      {
+        float number = stoi(number_input);
+        result /= number;
+      }
+      catch (...)
+      {
+        cout << "Invalid number!\n";
+      }
+      break;
     }
   }
 
