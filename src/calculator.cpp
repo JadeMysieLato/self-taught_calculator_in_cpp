@@ -4,6 +4,8 @@ using namespace std;
 int main()
 {
   string input_number;
+  int sum = 0;
+
   cout << "(Press enter to get the result)\n";
   while (input_number != "=")
   {
@@ -11,18 +13,19 @@ int main()
     cin >> input_number;
     if (input_number == "=")
     {
-      cout << input_number;
+      cout << sum;
       break;
     }
-    else if (input_number == "1" || input_number == "2" || input_number == "3" || input_number == "4" || input_number == "5" || input_number == "6" || input_number == "7" || input_number == "8" || input_number == "9" || input_number == "0")
+    try
     {
-      stoi(input_number);
-      input_number += input_number;
+      int inp = stoi(input_number);
+      sum += inp;
     }
-    else
+    catch (...)
     {
       cout << "Enter a number!\n";
     }
   }
+
   return 0;
 }
